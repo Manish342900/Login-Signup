@@ -12,6 +12,7 @@
     "react-toastify": "^11.0.3"
   },
   "scripts": {
+    "server":"npm json-server db.json",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

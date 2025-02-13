@@ -7,10 +7,10 @@ const Login = () => {
   const [password, setPassword] = useState('');
   
 
-  function submit(e) {
+  async function submit(e) {
     e.preventDefault(); 
     // console.log({ username, password }); 
-    fetch(`http://login-signup-lake.vercel.app/users?&email=${username}`)
+    await fetch(`https://test-api-1-opt6.onrender.com/users?email=${username}`)
     .then((res)=> res.json())
     .then((respo)=>{
       if(respo[0]?.password == password){

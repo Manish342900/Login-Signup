@@ -25,14 +25,14 @@ const Signup = () => {
     };
 
     // Handle form submission
-    function submitSignUp(e) {
+     async function submitSignUp(e) {
         e.preventDefault();
 
         if (!passwordVerify()) return; 
 
         let regobj = { id, email, password };
         
-        fetch("http://login-signup-lake.vercel.app/users", {
+        await fetch("https://test-api-1-opt6.onrender.com/users", {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(regobj)
