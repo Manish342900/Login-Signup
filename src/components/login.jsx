@@ -10,7 +10,7 @@ const Login = () => {
   function submit(e) {
     e.preventDefault(); 
     // console.log({ username, password }); 
-    fetch(`http://localhost:8000/users?&email=${username}`)
+    fetch(`http://login-signup-lake.vercel.app/users?&email=${username}`)
     .then((res)=> res.json())
     .then((respo)=>{
       if(respo[0]?.password == password){

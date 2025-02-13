@@ -32,7 +32,7 @@ const Signup = () => {
 
         let regobj = { id, email, password };
         
-        fetch("http://localhost:8000/users", {
+        fetch("http://login-signup-lake.vercel.app/users", {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(regobj)

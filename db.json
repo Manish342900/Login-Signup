@@ -39,6 +39,11 @@
       "id": "eeee",
       "email": "ee@ee.com",
       "password": "asdfasdf"
+    },
+    {
+      "id": "asdfasdf",
+      "email": "asdf@asdf.com",
+      "password": "asdf"
     }
   ]
 }
