@@ -1,0 +1,44 @@
+{
+  "users": [
+    {
+      "id": "manish",
+      "email": "manishpal9566@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": "",
+      "email": "",
+      "password": ""
+    },
+    {
+      "id": "",
+      "email": "",
+      "password": ""
+    },
+    {
+      "id": "karishma",
+      "email": "kari@love.com",
+      "password": "1234"
+    },
+    {
+      "id": "karishma",
+      "email": "kari@love.com",
+      "password": "1234"
+    },
+    {
+      "id": "tashu",
+      "email": "tashu@123.com",
+      "password": "1234"
+    },
+    {
+      "id": "tashu",
+      "email": "tashu@123.com",
+      "password": "1234"
+    },
+    {
+      "id": "eeee",
+      "email": "ee@ee.com",
+      "password": "asdfasdf"
+    }
+  ]
+}
