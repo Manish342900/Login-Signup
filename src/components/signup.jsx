@@ -2,39 +2,41 @@ import React, { useState } from 'react';
 import "./style.css";
 import { toast } from 'react-toastify';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+
 
 const Signup = () => {
-    const [id, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-    const [toggle, setToggle] = useState(true);
     
+    const [formData, setFormData] = useState({
+        id: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+    });
+    const [toggle, setToggle] = useState(true);
 
-    // Password verification function
+    
     function passwordVerify() {
-      if (password !== confirmPassword) {
-        toast.warn("Passwords don't match!");
-        return false;
-      }
-      return true;
+        if (formData.password !== formData.confirmPassword) {
+            toast.warn("Passwords don't match!");
+            return false;
+        }
+        return true;
     }
 
-    // Toggle password visibility
+    
     const togglePasswordVisibility = () => {
-      setToggle(!toggle);
+        setToggle(!toggle);
     };
 
-    // Handle form submission
-     async function submitSignUp(e) {
+   
+    function submitSignUp(e) {
         e.preventDefault();
 
-        if (!passwordVerify()) return; 
+        if (!passwordVerify()) return;
 
-        let regobj = { id, email, password };
-        
-        await fetch("https://test-api-1-opt6.onrender.com/users", {
+        let regobj = { id: formData.id, email: formData.email, password: formData.password };
+
+        fetch("https://test-api-1-opt6.onrender.com/users", {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(regobj)
@@ -48,7 +50,10 @@ const Signup = () => {
                 pauseOnHover: true,
                 draggable: true,
             });
-            
+
+           
+            setFormData({ id: "", email: "", password: "", confirmPassword: "" });
+
         })
         .catch((error) => {
             toast.error("Error during sign-up. Please try again.", {
@@ -63,33 +68,45 @@ const Signup = () => {
         });
     }
 
+   
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value
+        }));
+    };
+
     return (
         <div className='login-container signup'>
             <h1>Sign-Up</h1>
             <form onSubmit={submitSignUp}>
                 <div className='input-container'>
                     <input
-                        value={id}
-                        onChange={(e) => setName(e.target.value)}
+                        value={formData.id}
+                        onChange={handleChange}
                         type="text"
+                        name="id"
                         required
                     />
                     <div className='labeline'>Name</div>
                 </div>
                 <div className='input-container'>
                     <input
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        value={formData.email}
+                        onChange={handleChange}
                         type="email"
+                        name="email"
                         required
                     />
                     <div className='labeline'>Email</div>
                 </div>
                 <div className='input-container'>
                     <input
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        value={formData.password}
+                        onChange={handleChange}
                         type={toggle ? "password" : "text"}
+                        name="password"
                         required
                     />
                     <div className='labeline'>Password</div>
@@ -99,12 +116,13 @@ const Signup = () => {
                 </div>
                 <div className='input-container'>
                     <input
+                        value={formData.confirmPassword}
+                        onChange={handleChange}
                         type={toggle ? "password" : "text"}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        name="confirmPassword"
                         required
                     />
                     <div className='labeline'>Confirm Password</div>
-                    
                 </div>
                 <div className='button-container'>
                     <button className='btn' type="submit">Signup</button>
