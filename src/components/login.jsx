@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './style.css';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = ({ setUser }) => {
   const [credentials, setCredentials] = useState({
@@ -9,11 +10,22 @@ const Login = ({ setUser }) => {
     password: '',
   });
   const [loading, setLoading] = useState(false);
+  const [togglePassword, setTogglePassword] = useState(false); 
 
   const navigate = useNavigate();
 
+  
+  const togglePasswordVisibility = () => {
+    setTogglePassword(!togglePassword);
+  };
+
   function submit(e) {
     e.preventDefault();
+
+    if (!credentials.username || !credentials.password) {
+      toast.warn("Please fill in both fields.");
+      return;
+    }
 
     setLoading(true);
 
@@ -30,7 +42,6 @@ const Login = ({ setUser }) => {
           toast.success("Login Successful");
           navigate("/welcome");
 
-          
           setCredentials({ username: '', password: '' });
         } else {
           toast.warn("Password doesn't match");
@@ -63,9 +74,12 @@ const Login = ({ setUser }) => {
               setCredentials({ ...credentials, password: e.target.value })
             }
             value={credentials.password}
-            type='password'
+            type={togglePassword ? 'text' : 'password'} 
           />
           <div className='labeline'>Password</div>
+          <span className='eyeicon' onClick={togglePasswordVisibility}>
+            {togglePassword ? <FaEye /> : <FaEyeSlash />}
+          </span>
         </div>
         <div className='button-container'>
           <button type='submit' className='btn' disabled={loading}>
