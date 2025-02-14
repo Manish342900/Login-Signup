@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import "./style.css";
 import { toast } from 'react-toastify';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
     const [id, setName] = useState("");
@@ -9,6 +10,7 @@ const Signup = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [toggle, setToggle] = useState(true);
+    
 
     // Password verification function
     function passwordVerify() {
@@ -46,6 +48,7 @@ const Signup = () => {
                 pauseOnHover: true,
                 draggable: true,
             });
+            
         })
         .catch((error) => {
             toast.error("Error during sign-up. Please try again.", {
